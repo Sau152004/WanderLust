@@ -1,0 +1,30 @@
+<nav>
+  <div>
+    <a href="#" class="nav-title">WanderLust</a>
+    <a href="/listings">Explore</a>
+    <a href="/listings/new">Add your home</a>
+  </div>
+
+  <div class="nav-search-box">
+    <form action="/search" method="get">
+      <input type="text" placeholder="Search destinations" name="searchValue" />
+      <button type="submit" class="nav-search-btn">
+        <i class="fa-solid fa-magnifying-glass" style="margin-right: 3px"></i>
+        <span>Search</span>
+      </button>
+    </form>
+  </div>
+
+  <div class="flex">
+    <% if(!currUser){%>
+    <a href="/login"><b>Login</b></a>
+    <a href="/signup"><b>Signup</b></a>
+    <% } %> <% if(currUser) {%>
+    <div class="logged-user-box">
+      <i class="fa-solid fa-circle-user" style="font-size: 1.5em"></i>
+      <span style="font-size: 14px">@<%=currUser.username%></span>
+    </div>
+    <a href="/logout">Logout</a>
+    <% } %>
+  </div>
+</nav>

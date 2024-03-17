@@ -1,0 +1,54 @@
+<%- include("../includes/boilerplate.ejs") %>
+    <h2 style="text-align: center;">Edit your List</h2>
+    <form action="/listings/<%=singleList._id%>?_method=PUT" method="post" class="edit-form" enctype="multipart/form-data">
+      <div class="new-form-box">
+        <label for="title">Title: </label>
+        <input type="text" name="title" value="<%= singleList.title%>"  required />
+      </div>
+    
+      <div class="new-form-box">
+        <label for="description">Description: </label>
+        <textarea
+          name="description"
+          placeholder="Enter full description of the place"
+          rows="5"
+          cols="50"
+        >
+        <%= singleList.description%>" 
+      </textarea>
+      </div>
+<!-- 
+      <div class="new-form-box">
+        <label for="image">Image URL/Link: </label>
+        <input type="text" name="image" value="<%= singleList.image.url%>" required />
+      </div> -->
+
+      <div>
+        <div>Original Image: </div>
+        <img src=<%=singleList.image.url.replace("/upload","/upload/h_100,w_200")%> alt="original_img">
+      </div> 
+
+      <div class="new-form-box">
+        <label for="image" >Upload New Image: </label>
+        <input type="file" name="image" />
+      </div>
+    
+      <div class="new-form-price-country">
+        <div class="new-form-box">
+          <label for="price">Price: </label>
+          <input type="number" name="price" value="<%= singleList.price%>"  required/>
+        </div>
+        <div class="new-form-box country">
+          <label for="country">Country: </label>
+          <input type="text" name="country" value="<%= singleList.country%>" required/>
+        </div>
+      </div>
+    
+      <div class="new-form-box">
+        <label for="location">Location: </label>
+        <input type="text" name="location" value="<%= singleList.location%>" required/>
+      </div>
+      <button class="add-btn">Edit</button>
+
+    </form>
+    <%- include("../includes/footer.ejs") %>

@@ -1,0 +1,17 @@
+<%- include("../includes/boilerplate.ejs") %>
+<div class="signup-form-box">
+  <h2 style="text-align: center;">SignUp on WanderLust</h2>
+  <form action="/signup" method="post" class="signup-form">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Enter your Email"  required/>
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" placeholder="Enter a username" required/>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="Enter a strong password" required>
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="text" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" required>
+    <button type="submit" class="add-btn signup-btn">SignUp</button>
+  </form>
+</div>
+
+<%- include("../includes/footer.ejs") %>

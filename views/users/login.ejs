@@ -1,0 +1,34 @@
+<%- include("../includes/boilerplate.ejs") %>
+<div class="signup-form-box">
+  <h2 style="text-align: center">Login</h2>
+  <form action="/login" method="post" class="signup-form">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      placeholder="Enter a username"
+      required
+    />
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      placeholder="Enter your password"
+      required
+    />
+    <button type="submit" class="add-btn signup-btn">Login</button>
+  </form>
+  <div class="flex">
+    <hr/>
+    <span class="or-text">OR</span>
+    <hr/>
+  </div>
+  <h4>Don't have WanderLust account? Create Now!!</h4>
+  <button class="add-btn" style="margin-top: 5px">
+    <a href="/signup" style="text-decoration: none; color: white">Signup</a>
+  </button>
+</div>
+
+<%- include("../includes/footer.ejs") %>

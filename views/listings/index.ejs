@@ -1,0 +1,110 @@
+<%- include("../includes/boilerplate.ejs") %>
+
+<div class="post-nav">
+
+  <div>
+    <i class="fa-solid fa-circle-chevron-left" style="font-size: 18px; opacity: 0.7; cursor: pointer;visibility: hidden; z-index: 2; margin: 0 5px;" onclick="leftClickHandler()"></i>
+  </div>
+<div class="filter-box">
+  <div class="filter">
+    <i class="fa-solid fa-fire"></i>
+    <span>Trending</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-umbrella-beach"></i>
+    <span>Beach</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-snowflake"></i>
+    <span>Snow</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-mountain-sun"></i>
+    <span>Mountain</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-tree"></i>
+    <span>Tropical</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-water"></i>
+    <span>Lake</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-mug-saucer"></i>
+    <span>Bed & Breakfasts</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-campground"></i>
+    <span>A-frames</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+    <span>Play</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-golf-ball-tee"></i>
+    <span>Golfing</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-landmark-dome"></i>
+    <span>Domes</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-landmark"></i>
+    <span>Iconic cities</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-warehouse"></i>
+    <span>Warehouse</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-palette"></i>
+    <span>Creative spaces</span>
+  </div>
+
+  <div class="filter">
+    <i class="fa-solid fa-ship"></i>
+    <span>Yatch</span>
+  </div>
+  
+</div>
+<div class="post-nav-icon-box">
+  <i class="fa-solid fa-circle-chevron-right" style="font-size: 18px; opacity: 0.7; cursor: pointer; margin-left:5px ;" onclick="rightClickHandler()"></i>
+</div>
+
+  <div class="tax-btn-box">
+    <span>Display tax values</span>
+    <div class="post-nav-btn-back" onclick="postNavClickHandler()"></div>
+  </div>
+
+</div>
+
+<div class="allCardBox">
+  <% for(let list of allListings){ %>
+  <a href="/listings/<%=list._id%>">
+    <div class="card-container">
+      <img class="card-img" src="<%=list.image.url%>" alt="list_image..." />
+      <div class="card-title"><%=list.title%></div>
+      <div class="card-price">
+        &#8377; <%= list.price.toLocaleString("en-IN")%> /night
+        &nbsp; <i class="gstData">+18% GST</i>
+      </div>
+    </div>
+  </a>
+  <% } %>
+</div>
+<%- include("../includes/footer.ejs") %>
