@@ -5,6 +5,16 @@ const userSchema= new mongoose.Schema({
     email:{
         type: String,
         required: true,
+    },
+    profilephoto: {
+        filename: {
+            type: String,
+            default: "profilePhoto",
+        },
+        url: {
+            type: String,
+            default: "https://cdn-icons-png.freepik.com/512/64/64572.png?ga=GA1.1.343122819.1710065287&",
+        }
     }
 })
 

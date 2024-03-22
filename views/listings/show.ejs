@@ -5,6 +5,7 @@
   let title= "<%=singleList.title%>";
 </script>
 
+<a href="javascript:history.back()" class="show-back-btn"><i class="fa-solid fa-circle-arrow-left" style="font-size: 2em;"></i></a>
 <div class="show-list">
   <div class="show-title"><%= singleList.title %></div>
   <p class="listing-owner">Owned by <i><%=singleList.owner.username %> </i></p>
@@ -75,7 +76,12 @@
   <div class="all-reviews">
     <% for(review of singleList.reviews){ %>
     <div class="review-card">
-      <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin-bottom: 4px;">
+      <div class="review-item">
+          <img src="<%=review.createdBy?.profilephoto?.url%>" alt="" class="nav-profile-photo">
+          <div class="review-createdAt"><%= review.createdAt.toDateString().substr(4)%> , <%= review.createdAt.toLocaleTimeString() %></div>
+      </div>
+ 
+      <div class="review-item">
         <div class="review-name">@<%= review.createdBy.username%></div>
         <div>
           <% for(let a=0; a<review.rating; a++) {%>
@@ -86,13 +92,15 @@
               <% } %>
           </div>
       </div>
-      <div class="review-createdAt"><%= review.createdAt.toDateString().substr(4)%> , <%= review.createdAt.toLocaleTimeString() %></div>
+
       <div class="review-comment"><%= review.comment %></div>
-      <div style="display: flex; justify-content: space-between;">
+      <div class="review-item">
         <div class="review-rating"><%= review.rating %> Stars</div>
+        <% if(currUser && currUser.id == review.createdBy.id){%>
         <form action="/listings/<%= singleList._id%>/reviews/<%= review._id %>?_method=DELETE" method="post">
           <button type="submit" class=" review-del-btn"><i class="fa-solid fa-trash" style="color: #de0202; font-size: 1.2em;"></i></button>
         </form>
+        <% } %>
       </div>
     </div>
     <% } %>

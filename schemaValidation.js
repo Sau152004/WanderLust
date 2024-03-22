@@ -10,6 +10,8 @@ module.exports.listingSchema= Joi.object({
     price: Joi.number().required().min(0),
     location: Joi.string().required(),
     country: Joi.string().required(),
+    gst: Joi.number().required(),
+    category: Joi.string().required(),
 }).required();
 
 module.exports.reviewSchema= Joi.object({

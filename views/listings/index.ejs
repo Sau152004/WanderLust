@@ -1,85 +1,84 @@
 <%- include("../includes/boilerplate.ejs") %>
-
 <div class="post-nav">
 
   <div>
     <i class="fa-solid fa-circle-chevron-left" style="font-size: 18px; opacity: 0.7; cursor: pointer;visibility: hidden; z-index: 2; margin: 0 5px;" onclick="leftClickHandler()"></i>
   </div>
 <div class="filter-box">
-  <div class="filter">
+  <a href="/search?searchValue=trending" class="filter">
     <i class="fa-solid fa-fire"></i>
     <span>Trending</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=beach" class="filter">
     <i class="fa-solid fa-umbrella-beach"></i>
     <span>Beach</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=snow" class="filter">
     <i class="fa-solid fa-snowflake"></i>
     <span>Snow</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=mountain" class="filter">
     <i class="fa-solid fa-mountain-sun"></i>
     <span>Mountain</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=tropical" class="filter">
     <i class="fa-solid fa-tree"></i>
     <span>Tropical</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=lake" class="filter">
     <i class="fa-solid fa-water"></i>
     <span>Lake</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=bed_and_breakfast" class="filter">
     <i class="fa-solid fa-mug-saucer"></i>
     <span>Bed & Breakfasts</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=a_frames" class="filter">
     <i class="fa-solid fa-campground"></i>
     <span>A-frames</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=play" class="filter">
     <i class="fa-solid fa-table-tennis-paddle-ball"></i>
     <span>Play</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=golfing" class="filter">
     <i class="fa-solid fa-golf-ball-tee"></i>
     <span>Golfing</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=domes" class="filter">
     <i class="fa-solid fa-landmark-dome"></i>
     <span>Domes</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=iconic_cities" class="filter">
     <i class="fa-solid fa-landmark"></i>
     <span>Iconic cities</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=warehouse" class="filter">
     <i class="fa-solid fa-warehouse"></i>
     <span>Warehouse</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=creative_spaces" class="filter">
     <i class="fa-solid fa-palette"></i>
     <span>Creative spaces</span>
-  </div>
+  </a>
 
-  <div class="filter">
+  <a href="/search?searchValue=yatch" class="filter">
     <i class="fa-solid fa-ship"></i>
     <span>Yatch</span>
-  </div>
+  </a>
   
 </div>
 <div class="post-nav-icon-box">
@@ -88,7 +87,7 @@
 
   <div class="tax-btn-box">
     <span>Display tax values</span>
-    <div class="post-nav-btn-back" onclick="postNavClickHandler()"></div>
+    <div class="post-nav-btn-back" onclick="displayTaxClickHandler()"></div>
   </div>
 
 </div>
@@ -101,7 +100,7 @@
       <div class="card-title"><%=list.title%></div>
       <div class="card-price">
         &#8377; <%= list.price.toLocaleString("en-IN")%> /night
-        &nbsp; <i class="gstData">+18% GST</i>
+        <i class="gstData">+<b><%= list.gst %>% </b>GST</i>
       </div>
     </div>
   </a>

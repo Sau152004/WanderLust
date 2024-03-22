@@ -45,6 +45,15 @@ const listingSchema = new mongoose.Schema({
       type: [Number],
       required:  true,
     }
+  },
+  gst:{
+      type:Number,
+      required: true,
+  },
+  category:{
+    type: String,
+    enum: ["trending","beach","snow","mountain","tropical","lake",,"bed_and_breakfast","a_frames","play","golfing","domes","iconic_cities","warehouse","creative_spaces","yatch"],
+    required: true,
   }
 
 });

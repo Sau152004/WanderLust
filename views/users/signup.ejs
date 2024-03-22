@@ -6,8 +6,11 @@
     <input type="email" name="email" id="email" placeholder="Enter your Email"  required/>
     <label for="username">Username</label>
     <input type="text" name="username" id="username" placeholder="Enter a username" required/>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" placeholder="Enter a strong password" required>
+    <label for="sigup-pass">Password</label>
+    <div style="position: relative;">
+      <input type="password" name="password" id="sigup-pass" placeholder="Enter a strong password" style="width: 100%" required>
+      <i class="fa-solid fa-eye" onclick="signUpPassClickHandler(event)"></i>
+    </div>
     <label for="confirmPassword">Confirm Password</label>
     <input type="text" name="confirmPassword" id="confirmPassword" placeholder="Confirm password" required>
     <button type="submit" class="add-btn signup-btn">SignUp</button>

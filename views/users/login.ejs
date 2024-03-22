@@ -7,17 +7,15 @@
       type="text"
       name="username"
       id="username"
-      placeholder="Enter a username"
+      placeholder="Enter your username"
       required
     />
-    <label for="password">Password</label>
-    <input
-      type="password"
-      name="password"
-      id="password"
-      placeholder="Enter your password"
-      required
-    />
+    <label for="login-pass">Password</label>
+    <div style="position: relative;">
+      <input type="password" name="password" id="login-pass" placeholder="Enter your password" style="width: 100%" required>
+      <i class="fa-solid fa-eye" onclick="loginPassClickHandler(event)"></i>
+    </div>
+
     <button type="submit" class="add-btn signup-btn">Login</button>
   </form>
   <div class="flex">

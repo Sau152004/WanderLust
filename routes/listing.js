@@ -15,6 +15,7 @@ const upload = multer({ storage });
 
 // Map-box
 const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding.js");
+const Review = require("../models/review.js");
 const mapToken = process.env.MAP_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
@@ -35,6 +36,18 @@ router.get(
   })
 );
 
+router.get("/mylocations",wrapAsync(async(req,res)=>{
+  let allListings= await Listing.find({owner : res.locals.currUser._id});
+  res.render("listings/index.ejs", { allListings });
+}));
+
+router.get("/reviewedlocation",wrapAsync(async(req,res)=>{
+  let review= await Review.find({ createdBy : res.locals.currUser._id});
+  let allListings=await Listing.find({"reviews": {$in: review}});
+  console.log(allListings);
+  res.render("listings/index.ejs", { allListings });
+}));
+
 router.get("/new", isLoggedIn, (req, res) => {
   res.render("listings/new.ejs");
 });
@@ -54,7 +67,7 @@ router.post(
       })
       .send();
 
-    const { title, description, price, location, country } = req.body;
+    const { title, description, price, location, country, gst ,category } = req.body;
     const newList = new Listing({
       title: title,
       description: description,
@@ -62,7 +75,10 @@ router.post(
       location: location,
       country: country,
       owner: res.locals.currUser._id,
+      gst: gst,
+      category: category,
     });
+
     newList.geometry=response.body.features[0].geometry;
 
     if (typeof req.file != "undefined") {
@@ -76,7 +92,7 @@ router.post(
     console.log(result);
 
     // Flash message---
-    req.flash("success", "New Listing Created Successfully!");
+    req.flash("success", "New Location Added Successfully!");
     res.redirect("/listings");
   })
 );
@@ -89,8 +105,9 @@ router.get(
     let singleList = await Listing.findById(id)
       .populate({ path: "reviews", populate: { path: "createdBy" } })
       .populate("owner");
+    console.log(singleList);
     if (!singleList) {
-      req.flash("error", "Listing you want to access doesn't exist!");
+      req.flash("error", "Location you want to access doesn't exist!");
       res.redirect("/listings");
     }
     // console.log(singleList);
@@ -105,9 +122,10 @@ router.get(
     const { id } = req.params;
     let singleList = await Listing.findById(id);
     if (!singleList) {
-      req.flash("error", "Listing you want to edit doesn't exist!");
-      res.redirect("/listings");
+      req.flash("error", "Location you want to edit doesn't exist!");
+      return res.redirect("/listings");
     }
+
     res.render("listings/edit.ejs", { singleList });
   })
 );
@@ -119,8 +137,15 @@ router.put(
   upload.single("image"),
   validateListing,
   wrapAsync(async (req, res) => {
+    let response = await geocodingClient
+      .forwardGeocode({  
+        query: req.body.location + " " +req.body.country,  
+        limit: 1,  
+      })
+      .send();
+
     const { id } = req.params;
-    const { title, description, price, location, country } = req.body;
+    const { title, description, price, location, country, gst ,category} = req.body;
     let updatedList = await Listing.findByIdAndUpdate(
       id,
       {
@@ -130,6 +155,8 @@ router.put(
         location: location,
         country: country,
         owner: res.locals.currUser._id,
+        gst:gst,
+        category: category,
       },
       { runValidators: true, new: true }
     );
@@ -141,9 +168,10 @@ router.put(
         url: req.file.path,
       };
     }
+    updatedList.geometry=response.body.features[0].geometry;
     await updatedList.save();
     console.log(updatedList);
-    req.flash("success", "Listing Updated Successfully!");
+    req.flash("success", "Location Updated Successfully!");
     res.redirect(`/listings/${id}`);
   })
 );
@@ -157,7 +185,7 @@ router.delete(
     await Listing.findByIdAndDelete(id).then((res) => {
       console.log(res);
     });
-    req.flash("error", "Listing Deleted!");
+    req.flash("error", "Location Deleted!");
     res.redirect("/listings");
   })
 );
