@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
   min-height: 100vh;
@@ -475,7 +479,7 @@ hr {
 .signup-form-box {
   width: 35%;
   margin: auto;
-  min-height: calc(100vh - 197px);
+  min-height: calc(100vh - 199px);
 }
 
 .signup-form input {
@@ -659,14 +663,15 @@ hr {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: #551759;
+  /* background-color: #551759; */
+  border: 1px solid #551759;
 }
 
 .post-nav-btn-back::before {
   position: absolute;
   content: "";
-  top: 2px;
-  left: 2px;
+  top: 1px;
+  left: 1px;
   background-color: #cca5cf;
   height: 17px;
   width: 17px;
@@ -675,7 +680,7 @@ hr {
 }
 
 .postNavBtnTran{ 
-  box-shadow: 0 0 20px #929292;
+  background-color: #551759;
 }
 
 .postNavBtnTran::before {

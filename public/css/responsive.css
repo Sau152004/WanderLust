@@ -53,6 +53,8 @@
   .userDetails {
     font-size: 16px;
     top: 4.2em;
+    height: 81vh;
+    overflow-x: auto;
   }
 
   .transNegative {
@@ -144,8 +146,6 @@
 
   .userDetails{
     width: 65%;
-    height: 90vh;
-    overflow-x: auto;
   }
 
   .show-loaction{
@@ -158,6 +158,10 @@
 
   .show-desc, footer{
     font-size: 15px;
+  }
+
+  .extra-options{
+    gap: 1em;
   }
 
 }
@@ -201,6 +205,12 @@
 
   .logged-user-box span{
     font-size: 13px !important;
+  }
+
+  .alert{
+    padding: 1em 2em;
+    margin: 10px auto;
+    font-size: 16px;
   }
 
 }
