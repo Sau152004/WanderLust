@@ -53,7 +53,8 @@
   .userDetails {
     font-size: 16px;
     top: 4.2em;
-    height: 81vh;
+    height: auto;
+    max-height: 81vh;
     overflow-x: auto;
   }
 
