@@ -1,3 +1,5 @@
+## Hosted Link: 
+https://wanderlust-g95s.onrender.com/listings
 # WanderLust
 A website for room booking where you can create your account to add, edit, review or to delete a location. It also include a seperate user section where you can edit your profile.
 
